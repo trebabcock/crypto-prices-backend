@@ -39,6 +39,7 @@ func (a *App) getData(w http.ResponseWriter, r *http.Request) {
 	
 	req, err := http.NewRequest("GET", "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest", nil)
 	if err != nil {
+		log.Println(err)
 		RespondError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
@@ -54,6 +55,7 @@ func (a *App) getData(w http.ResponseWriter, r *http.Request) {
 	
 	resp, err := client.Do(req)
 	if err != nil {
+		log.Println(err)
 		RespondError(w, http.StatusInternalServerError, err.Error())
 		return
 	}
